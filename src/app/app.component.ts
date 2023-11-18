@@ -11,6 +11,9 @@ export class AppComponent {
 
   currency = "$";
 
+  showModal: boolean = false;
+
+
   form = this.fb.group({
     order: ["", Validators.required],
     name: ["", Validators.required],
@@ -118,13 +121,16 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) { }
 
-  scrollTo(target: HTMLElement) {
+  scrollTo(target: HTMLElement, burger?: any) {
     target.scrollIntoView({ behavior: "smooth" })
+    if (burger) {
+      this.form.patchValue({ order: burger.title + ' (' + burger.price + ' ' + this.currency + ')' });
+    }
   }
 
   confirmOrder() {
     if (this.form.valid) {
-      alert('Все ок с формой')
+      this.showModal = true;
       this.form.reset()
     }
   }
@@ -151,5 +157,9 @@ export class AppComponent {
     this.productsData.forEach((item: any) => {
       item.price = +(item.basePrice * coefficient).toFixed(1)
     })
+  }
+
+  closeModal() {
+    this.showModal = !this.showModal;
   }
 }

@@ -92,7 +92,7 @@
             </div>
 
             <div class="products-item-action">
-              <button class="button product-button" (click)="scrollTo(order)">
+              <button class="button product-button" (click)="scrollTo(order, product)">
                 <span>Заказать</span>
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -120,7 +120,7 @@
         <div class="order-form-inputs" [formGroup]="form">
           <div class="order-form-input"
             [class]="{'error':form.get('order')?.invalid && (form.get('order')?.dirty ||form.get('order')?.touched) }">
-            <input type="text" placeholder="Ваш заказ" id="burger" formControlName="order">
+            <input type="text" placeholder="Ваш заказ" id="burger" formControlName="order" readonly>
           </div>
           <div class="order-form-input"
             [class]="{'error':form.get('name')?.invalid && (form.get('name')?.dirty ||form.get('name')?.touched) }">
@@ -150,14 +150,14 @@
 
 </section>
 
-<div id="modal" class="modal">
+<div id="modal" class="modal" [class]="{'active' : showModal}">
   <div class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header">
         <span>Ваш заказ успешно принят!</span>
       </div>
       <div class="modal-footer">
-        <button class="button" id="closeModal">Закрыть</button>
+        <button class="button" id="closeModal" (click)="closeModal()">Закрыть</button>
       </div>
     </div>
   </div>
