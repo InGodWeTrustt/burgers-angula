@@ -42,7 +42,7 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder, private appSevice: AppService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.appSevice.getData().subscribe((data: any) => {
       this.productsData = data
     })
@@ -65,6 +65,7 @@ export class AppComponent {
             // Если запрос отправился успешно. Показываем модальное окно
             this.modal.isOpen = true;
             this.modal.responseMsg = response.message;
+            
             // Очищаем поля формы
             this.form.reset();
           },
