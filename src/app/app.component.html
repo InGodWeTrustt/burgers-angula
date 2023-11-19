@@ -81,7 +81,7 @@
       <div class="products-items">
         <div class="products-item" *ngFor="let product of productsData">
           <div class="products-item-image">
-            <img src="./assets/images/{{product.image}}" alt="Burger 1">
+            <img src="{{product.image}}" alt="Burger 1">
           </div>
           <div class="products-item-title">{{product.title}}</div>
           <div class="products-item-text">{{product.text}}</div>
@@ -150,11 +150,11 @@
 
 </section>
 
-<div id="modal" class="modal" [class]="{'active' : showModal}">
+<div id="modal" class="modal" [class]="{'active' : modal.isOpen}">
   <div class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header">
-        <span>Ваш заказ успешно принят!</span>
+        <span>{{modal.responseMsg}}</span>
       </div>
       <div class="modal-footer">
         <button class="button" id="closeModal" (click)="closeModal()">Закрыть</button>
